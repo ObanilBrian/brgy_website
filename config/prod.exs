@@ -23,10 +23,14 @@ config :brgy_website, BrgyWebsiteWeb.Endpoint,
 # Configure your database
 config :brgy_website, BrgyWebsiteWeb.Repo,
   adapter: Ecto.Adapters.Postgres,
-  url: System.get_env("DATABASE_URL"),
+  username: System.get_env("DATABASE_USERNAME"),
+  password: System.get_env("DATABASE_PASSWORD"),
+  database: System.get_env("DATABASE_DB"),
+  pool_size: 15
   pool_size: String.to_integer(System.get_env("POOL_SIZE") || "10"),
   ssl: true
 
+# url: System.get_env("DATABASE_URL"),
 # Do not print debug messages in production
 config :logger, level: :info
 
