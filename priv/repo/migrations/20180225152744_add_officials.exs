@@ -1,13 +1,13 @@
-defmodule BrgyWebsite.Repo.Migrations.AddUsers do
+defmodule BrgyWebsite.Repo.Migrations.AddOfficials do
   use Ecto.Migration
 
   def change do
-    create table(:users) do
+    create table(:officials) do
       add :f_name, :string
       add :m_initial, :string
       add :l_name, :string
-      add :username, :string
-      add :password, :string
+      add :position, :string
+      add :picture, :string
       
       timestamps()
     end
