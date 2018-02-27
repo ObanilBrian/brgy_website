@@ -1,4 +1,4 @@
-<div class="ui grid">
+<div class="ui grid" id="index">
   <div class="sixteen wide column text-center">
     <h2 class="ui icon header">
       <i class="home icon icon-green"></i>
@@ -85,7 +85,3 @@
     </table>
   </div>
 </div>
-
-<script>
-  $('#nav_home').addClass('active')
-</script>

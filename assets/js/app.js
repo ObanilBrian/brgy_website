@@ -20,32 +20,48 @@ import "phoenix_html"
 
 // import socket from "./socket"
 
-$('table[role="datatable"]').dataTable({
-  dom:
-  "<'ui grid'"+
-    "<'row'"+
-      "<'eight wide column'l>"+
-      "<'right aligned eight wide column'f>"+
-    ">"+
-    "<'row dt-table'"+
-      "<'sixteen wide column'tr>"+
-    ">"+
-    "<'row'"+
-      "<'seven wide column'i>"+
-      "<'right aligned nine wide column'p>"+
-    ">"+
-  ">",
-renderer: 'semanticUI',
-pagingType: "full_numbers",
-language: {
-  emptyTable:     "No Records Found!",
-  zeroRecords:    "No Matching Records Found!",
-  search:         "Search",
-  paginate: {
-    first: "<i class='angle single left icon'></i> First",
-    previous: "<i class='angle double left icon'></i> Previous",
-    next: "Next <i class='angle double right icon'></i>",
-    last: "Last <i class='angle single right icon'></i>"
-  }
+
+let index_state = $('#index').is(":visible");
+if(index_state == true) {
+  $('#nav_home').addClass('active')
+  $('table[role="datatable"]').dataTable({
+    dom:
+    "<'ui grid'"+
+      "<'row'"+
+        "<'eight wide column'l>"+
+        "<'right aligned eight wide column'f>"+
+      ">"+
+      "<'row dt-table'"+
+        "<'sixteen wide column'tr>"+
+      ">"+
+      "<'row'"+
+        "<'seven wide column'i>"+
+        "<'right aligned nine wide column'p>"+
+      ">"+
+    ">",
+    renderer: 'semanticUI',
+    pagingType: "full_numbers",
+    language: {
+    emptyTable:     "No Records Found!",
+    zeroRecords:    "No Matching Records Found!",
+    search:         "Search",
+    paginate: {
+      first: "<i class='angle single left icon'></i> First",
+      previous: "<i class='angle double left icon'></i> Previous",
+      next: "Next <i class='angle double right icon'></i>",
+      last: "Last <i class='angle single right icon'></i>"
+    }
+    }
+    });    
 }
-});
+
+
+let about_state = $('#about').is(":visible");
+if(about_state == true) {
+  $('#nav_about').addClass('active')
+}
+
+let report_state = $('#report').is(":visible");
+if(report_state == true) {
+  $('#nav_report').addClass('active')
+}

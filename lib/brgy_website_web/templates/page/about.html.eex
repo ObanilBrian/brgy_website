@@ -1,3 +1,65 @@
-<script>
-  $('#nav_about').addClass('active')
-</script>
+<div class="ui grid" id="about">
+  <div class="sixteen wide column">
+    <div class="ui segment">
+      <h2 class="ui header">Mission</h2>
+      <div class="ui clearing divider"></div>
+      <p>
+      DELA PAZ SHALL VIGOROUSLY WORK FOR THE UNITY AMONG ITS RESIDENTS IN THE ATTAINMENT OF PEACE AND PROGRESS, WHERE THE DELIVERY OF BASIC SOCIAL SERVICES IS IMPROVED; INFRASTRUCTURE FACILITIES ARE ENHANCED; PEOPLE’S CAPACITY TO MANAGE THEIR OWN RESOURCES IS ENSURED, ORGANIZATIONS ARE STRENGTHENED, AND STRONGER COORDINATION AND LINKAGES WITH DIFFERENT AGENCIES OF THE GOVERNMENT AND THE PRIVATE SECTOR IS FOSTERED.
+      </p>
+    </div>
+  </div>
+  <div class="sixteen wide column">
+    <div class="ui segment">
+      <h2 class="ui header">Vision</h2>
+      <div class="ui clearing divider"></div>
+      <p>
+      DELA PAZ IS A PROSPEROUS AND UNITED BARANGAY WITH GOD-FEARING, HEALTHY, INDUSTRIOUS, INVOLVED AND WELL-MANNERED CITIZENS WHO ARE JOINT TOGETHER FOR A COMMON PURPOSE OF ATTAINING PEACE AND PROGRESS UNDER THE SYSTEM OF A DEMOCRATIC, FAIR AND HUMANE LEADERSHIP THAT SHALL ULTIMATELY RESULT TO BETTER QUALITY OF LIFE OF ITS PEOPLE.
+      </p>
+    </div>
+  </div>
+  <div class="sixteen wide column">
+    <div class="ui segment">
+      <h2 class="ui header">Barangay Officials</h2>
+      <div class="ui clearing divider"></div>
+      <p>
+
+        <div class="ui centered card">
+          <div class="image">
+            <img src="/images/logo.png">
+          </div>
+          <div class="content text-center">
+            <a class="header">Some Name</a>
+            <span>Barangay Captain</span>
+          </div>
+        </div>
+
+        <br><br><br><br>
+
+        <div class="ui two column grid">
+          <div class="column">
+            <div class="ui centered card">
+              <div class="image">
+                <img src="/images/logo.png">
+              </div>
+              <div class="content">
+                <a class="header">Some Name</a>
+                <span>Barangay Captain</span>
+              </div>
+            </div>
+          </div>
+          <div class="column">
+            <div class="ui centered card">
+              <div class="image">
+                <img src="/images/logo.png">
+              </div>
+              <div class="content">
+                <a class="header">Some Name</a>
+                <span>Barangay Captain</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </p>
+    </div>
+  </div>
+</div>

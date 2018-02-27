@@ -15,7 +15,8 @@ exports.config = {
         before: [
           "vendor/jquery/jquery.min.js",
           "vendor/semantic/dist/semantic.min.js",
-          "vendor/datatables/datatable.min.js"
+          "vendor/datatables/datatable.min.js",
+          "js/app.js"
         ]
       }
     },
