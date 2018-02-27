@@ -15,14 +15,14 @@
     <div class="container">
       <header class="header">
         <div class="ui grid">
-          <div class="four wide column logo-container">
-            <span class="logo"><img src="images/logo.png"></span>
+          <div class="six wide column logo-container">
+            <span class="logo"><img src="images/icon.png"></span>
             <p>
               <span class="main">Delapaz</span>
               <span class="sub">Biñan City, Laguna</span>
             </p>
           </div>
-          <div class="twelve wide column nav-container">
+          <div class="ten wide column nav-container">
             <nav role="navigation">
               <a href="/" id="nav_home">Home</a>
               <a href="/about" id="nav_about">About</a>

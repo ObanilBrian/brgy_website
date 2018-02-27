@@ -25,7 +25,7 @@
 
         <div class="ui centered card">
           <div class="image">
-            <img src="/images/logo.png">
+            <img src="/images/icon.png">
           </div>
           <div class="content text-center">
             <a class="header">Some Name</a>
@@ -39,7 +39,7 @@
           <div class="column">
             <div class="ui centered card">
               <div class="image">
-                <img src="/images/logo.png">
+                <img src="/images/icon.png">
               </div>
               <div class="content">
                 <a class="header">Some Name</a>
@@ -50,7 +50,7 @@
           <div class="column">
             <div class="ui centered card">
               <div class="image">
-                <img src="/images/logo.png">
+                <img src="/images/icon.png">
               </div>
               <div class="content">
                 <a class="header">Some Name</a>
