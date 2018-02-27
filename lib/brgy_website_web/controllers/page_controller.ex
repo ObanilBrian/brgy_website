@@ -12,4 +12,8 @@ defmodule BrgyWebsiteWeb.PageController do
   def report(conn, _params) do
     render conn, "reports.html"
   end
+
+  def login(conn, _params) do
+    render conn, "login.html"
+  end
 end

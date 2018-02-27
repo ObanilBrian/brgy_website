@@ -19,6 +19,8 @@ defmodule BrgyWebsiteWeb.Router do
     get "/", PageController, :index
     get "/about", PageController, :about
     get "/report", PageController, :report
+
+    get "/login", PageController, :login
   end
 
   # Other scopes may use custom stacks.
