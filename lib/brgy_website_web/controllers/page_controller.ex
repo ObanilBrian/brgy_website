@@ -4,4 +4,12 @@ defmodule BrgyWebsiteWeb.PageController do
   def index(conn, _params) do
     render conn, "index.html"
   end
+
+  def about(conn, _params) do
+    render conn, "about.html"
+  end
+
+  def report(conn, _params) do
+    render conn, "reports.html"
+  end
 end

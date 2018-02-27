@@ -7,27 +7,47 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Hello BrgyWebsite!</title>
+    <title>Brgy. Delapaz</title>
     <link rel="stylesheet" href="<%= static_path(@conn, "/css/app.css") %>">
   </head>
 
   <body>
     <div class="container">
       <header class="header">
-        <nav role="navigation">
-          <h1>Hello</h1>
-        </nav>
-        <span class="logo"></span>
+        <div class="ui grid">
+          <div class="four wide column logo-container">
+            <span class="logo"><img src="images/logo.png"></span>
+            <p>
+              <span class="main">Delapaz</span>
+              <span class="sub">Biñan City, Laguna</span>
+            </p>
+          </div>
+          <div class="twelve wide column nav-container">
+            <nav role="navigation">
+              <a href="/" id="nav_home">Home</a>
+              <a href="/about" id="nav_about">About</a>
+              <a href="/report" id="nav_report">Report</a>
+            </nav>
+          </div>
+        </div>
       </header>
 
       <p class="alert alert-info" role="alert"><%= get_flash(@conn, :info) %></p>
       <p class="alert alert-danger" role="alert"><%= get_flash(@conn, :error) %></p>
-
+      <script src="<%= static_path(@conn, "/js/app.js") %>"></script>
       <main role="main">
         <%= render @view_module, @view_template, assigns %>
       </main>
 
+      <footer>
+        <div class="ui grid">
+          <div class="sixteen wide column footer-content">
+            &copy; Barangay Delapaz, Biñan City, Laguna 2018.
+          </div>
+        </div>
+      </footer>
+
     </div> <!-- /container -->
-    <script src="<%= static_path(@conn, "/js/app.js") %>"></script>
+    
   </body>
 </html>

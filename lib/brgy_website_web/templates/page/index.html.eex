@@ -1,36 +1,91 @@
-<div class="jumbotron">
-  <h2><%= gettext "Welcome to %{name}!", name: "Phoenix" %></h2>
-  <p class="lead">A productive web framework that<br />does not compromise speed and maintainability.</p>
+<div class="ui grid">
+  <div class="sixteen wide column text-center">
+    <h2 class="ui icon header">
+      <i class="home icon icon-green"></i>
+      <div class="content">
+        Welcome to the barangay!
+        <div class="sub header">Stay updated, be informed, and get the latest news about the barangay.</div>
+      </div>
+    </h2>
+    <div>
+      <br>
+      <button class="ui circular facebook icon button">
+        <i class="facebook icon"></i>
+      </button>
+      <button class="ui circular twitter icon button">
+        <i class="twitter icon"></i>
+      </button>
+      <button class="ui circular instagram icon button">
+        <i class="instagram icon"></i>
+      </button>
+      <button class="ui circular google plus icon button">
+        <i class="google plus icon"></i>
+      </button>
+      <br>
+    </div>
+  </div>
+  <div class="sixteen wide column">
+    <h4 class="ui horizontal divider header">
+      <i class="info icon"></i>
+      About the Barangay
+    </h4>
+  </div>
+  <div class="sixteen wide column">
+    <div class="ui piled segment">
+      <div class="text-center">
+        <h4 class="ui header">
+          MGA TALA SA KAHAPON NG BARANGAY DELA PAZ
+          <br>
+          <span class="sub">ni Former Barangay Councilor Bryan Jayson “BJ” T. Borja</span>
+        </h4>
+      </div>
+      <br>
+      <br>
+      <p class="text-justify">&emsp;&emsp;&emsp;Sa mga lumang tala ng kasaysayan ng Biñan, nakilala ang Barangay Dela Paz sa isang kapilya na kinalalagakan ng isang milagrosang birhen – ang Birhen ng Kapayapaan at Mabuting Paglalakabay (Spanish: Nuestra Señora dela Paz y Buen Viaje) – kung saan isinunod ang naturang pangalan ng barangay. Nasusulat sa kasaysayan na si Dr. Jose Rizal ay ipinamintuho ng kanyang inang si Teodora Alonso sa Birhen ng Kapayapaan at Mabuting Paglalakabay noong siya ay isilang. Sa aklat ni Asuncion Lopez Bantug, kamag-anak ni Rizal, isinulat niya na ang batang Rizal noong siya nag-aaral sa Biñan ay madalas na bumibisita sa kapilya na kinalalagakan ng milagrosang birhen sa Barangay Dela Paz. Nakilala rin ang barangay sa Pantalan na binuksan dito sa pagitan ng mga taong 1869-1871 – ang Pantalang ito ang nagsilbing daanang pantubig patungong Maynila at sa mga karatig-bayan sa Lalawigan ng Laguna. Naitala sa mga aklat pangkasaysayan na sa pagbabalik ng batang Rizal mula Biñan pauwi ng Calamba ay sa Pantalan ng Dela Paz siya dumaan lulan ng isang bapor. Hindi rin malilimot ng mga mamamayan sa Biñan na isang Parola ang itinayo sa Dela Paz malapit sa lumang kapilya na siyang nagsilbing gabay ng mga mangingisda sa dilim ng gabi. Sa ilang pananaliksik, lumalabas na kabilang ang kasalukuyang P. Paterno Street at A. Mabini Street ng Barangay Dela Paz sa tinatawag na Calle Real ng lumang poblacion ng Biñan, ibig sabihin nito hindi naaalis sa tala ng kasaysayan ang maalwal na pamumuhay, mataas na edukasyon at sipag sa paggawa ng mga mamamayan ng barangay kahit pa man noong unang panahon. </p>
+    </div>
+     <div class="text-right">
+        <button class="ui right labeled icon button">
+          <i class="right arrow icon"></i>
+          Learn more
+        </button>
+    </div>
+  </div>
+  <div class="sixteen wide column">
+    <h4 class="ui horizontal divider header">
+      <i class="newspaper icon"></i>
+      Latest News and Updates
+    </h4>
+  </div>
+  <div class="sixteen wide column">
+    <table role="datatable" class="ui celled table">
+      <thead>
+        <tr><th>Header</th>
+        <th>Header</th>
+        <th>Header</th>
+      </tr></thead>
+      <tbody>
+        <tr>
+          <td>
+            <div class="ui ribbon label">First</div>
+          </td>
+          <td>Cell</td>
+          <td>Cell</td>
+        </tr>
+        <tr>
+          <td>Cell</td>
+          <td>Cell</td>
+          <td>Cell</td>
+        </tr>
+        <tr>
+          <td>Cell</td>
+          <td>Cell</td>
+          <td>Cell</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 </div>
 
-<div class="row marketing">
-  <div class="col-lg-6">
-    <h4>Resources</h4>
-    <ul>
-      <li>
-        <a href="http://phoenixframework.org/docs/overview">Guides</a>
-      </li>
-      <li>
-        <a href="https://hexdocs.pm/phoenix">Docs</a>
-      </li>
-      <li>
-        <a href="https://github.com/phoenixframework/phoenix">Source</a>
-      </li>
-    </ul>
-  </div>
-
-  <div class="col-lg-6">
-    <h4>Help</h4>
-    <ul>
-      <li>
-        <a href="http://groups.google.com/group/phoenix-talk">Mailing list</a>
-      </li>
-      <li>
-        <a href="http://webchat.freenode.net/?channels=elixir-lang">#elixir-lang on freenode IRC</a>
-      </li>
-      <li>
-        <a href="https://twitter.com/elixirphoenix">@elixirphoenix</a>
-      </li>
-    </ul>
-  </div>
-</div>
+<script>
+  $('#nav_home').addClass('active')
+</script>
