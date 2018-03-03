@@ -16,7 +16,7 @@
       <header class="header">
         <div class="ui grid">
           <div class="six wide column logo-container">
-            <span class="logo"><img src="images/icon.png"></span>
+            <span class="logo"><img src="<%= static_path(@conn, "/images/icon.png") %>"></span>
             <p>
               <span class="main">Delapaz</span>
               <span class="sub">Biñan City, Laguna</span>
@@ -27,6 +27,7 @@
               <a href="/" id="nav_home">Home</a>
               <a href="/about" id="nav_about">About</a>
               <a href="/report" id="nav_report">Report</a>
+              <a href="/login" id="nav_admin">Admin</a>
             </nav>
           </div>
         </div>

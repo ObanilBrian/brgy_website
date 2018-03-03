@@ -6,8 +6,9 @@ defmodule BrgyWebsite.Schemas.News do
   schema "news" do
     field :title, :string
     field :subtitle, :string
-    field :username, :string
+    field :author, :string
     field :content, :string
+    field :banner, :binary
 
     timestamps()
   end
@@ -18,7 +19,7 @@ defmodule BrgyWebsite.Schemas.News do
     |> cast(attrs, [
       :title,
       :subtitle,
-      :username,
+      :author,
       :content
       ])
   end

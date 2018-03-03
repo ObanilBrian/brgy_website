@@ -1,0 +1,98 @@
+<div class="ui segment" id="user">
+  <div class="ui grid">
+    <div class="two wide column">
+      <div class="ui vertical basic buttons">
+        <a href="/blotter" class="ui button disabled">Blotter</a>
+        <%# <a href="/news" class="ui button">News</a> %>
+        <a href="/official" class="ui button">Officials</a>
+        <a href="/user" class="ui button">User</a>
+      </div>
+    </div>
+    <div class="fourteen wide column">
+      <div class="ui segment">
+          <h3> Viewing Case <%= "#{@blotter.c_first_name} #{@blotter.c_middle_name} #{@blotter.c_last_name}" %> vs. <%= "#{@blotter.r_first_name} #{@blotter.r_middle_name} #{@blotter.r_last_name}" %>. </h3>
+          <%= form_for @changeset, page_path(@conn, :add_blotter), [class: "ui form frm_blotter"], fn f -> %>
+            <div class="ui segment">
+              <h3>Complainant</h3>
+              <div class="field">
+                <label>First Name</label>
+                <%= text_input f, :c_first_name, placeholder: "Enter first name", readonly: "readonly" %>
+                <%= error_tag f, :first_name %>
+              </div>
+              <div class="field">
+                <label>Middle Name</label>
+                <%= text_input f, :c_middle_name, placeholder: "Enter middle name", readonly: "readonly" %>
+                <%= error_tag f, :first_name %>
+              </div>
+              <div class="field">
+                <label>Last Name</label>
+                <%= text_input f, :c_last_name, placeholder: "Enter last name", readonly: "readonly" %>
+                <%= error_tag f, :last_name %>
+              </div>
+              <div class="field">
+                <label>Address</label>
+                <%= text_input f, :c_address, placeholder: "Enter address", readonly: "readonly" %>
+                <%= error_tag f, :c_address %>
+              </div>
+              <div class="field">
+                <label>Phone Number</label>
+                <%= text_input f, :c_phone, placeholder: "Enter phone", readonly: "readonly" %>
+                <%= error_tag f, :c_phone %>
+              </div>
+            </div>
+            <div class="ui segment">
+              <h3>Respondent</h3>
+              <div class="field">
+                <label>First Name</label>
+                <%= text_input f, :r_first_name, placeholder: "Enter first name", readonly: "readonly" %>
+                <%= error_tag f, :first_name %>
+              </div>
+              <div class="field">
+                <label>Middle Name</label>
+                <%= text_input f, :r_middle_name, placeholder: "Enter middle name", readonly: "readonly" %>
+                <%= error_tag f, :first_name %>
+              </div>
+              <div class="field">
+                <label>Last Name</label>
+                <%= text_input f, :r_last_name, placeholder: "Enter last name", readonly: "readonly" %>
+                <%= error_tag f, :last_name %>
+              </div>
+              <div class="field">
+                <label>Address</label>
+                <%= text_input f, :r_address, placeholder: "Enter address", readonly: "readonly" %>
+                <%= error_tag f, :c_address %>
+              </div>
+              <div class="field">
+                <label>Phone Number</label>
+                <%= text_input f, :r_phone, placeholder: "Enter phone", readonly: "readonly" %>
+                <%= error_tag f, :c_phone %>
+              </div>
+            </div>
+            <div class="ui segment">
+              <h3>Details</h3>
+              <div class="field">
+                <label>Case</label>
+                <%= text_input f, :case, placeholder: "Enter case", readonly: "readonly" %>
+                <%= error_tag f, :case %>
+              </div>
+              <div class="field">
+                <label>Description</label>
+                <%= text_input f, :description, placeholder: "Enter description", readonly: "readonly" %>
+                <%= error_tag f, :description %>
+              </div>
+            </div>
+          <% end %>
+          <br><br>
+          <a href="/blotter" class="ui button">
+            <i class="chevron left icon"></i>
+            Back to Blotter Index
+          </a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<a href="/" class="ui right floated button">
+  <i class="sign out alternate icon"></i>
+  Log Out
+</a>

@@ -40,6 +40,8 @@ defmodule BrgyWebsiteWeb.Endpoint do
 
   plug BrgyWebsiteWeb.Router
 
+  plug Plug.Static, at: "/uploads", from: "/media"
+
   @doc """
   Callback invoked for dynamically configuring the endpoint.
 

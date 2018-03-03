@@ -1,0 +1,59 @@
+<div class="ui segment" id="user">
+  <div class="ui grid">
+    <div class="two wide column">
+      <div class="ui vertical basic buttons">
+        <a href="/blotter" class="ui button">Blotter</a>
+        <%# <a href="/news" class="ui button">News</a> %>
+        <a href="/official" class="ui button">Officials</a>
+        <a href="/user" class="ui button disabled">User</a>
+      </div>
+    </div>
+    <div class="fourteen wide column">
+      <div class="ui segment">
+          <h3> Add a new user. </h3>
+          <%= form_for @changeset, page_path(@conn, :add_user), [class: "ui form frm_user"], fn f -> %>
+            <div class="three fields">
+              <div class="field">
+                <label>First Name</label>
+                <%= text_input f, :first_name, placeholder: "Enter first name" %>
+                <%= error_tag f, :first_name %>
+              </div>
+              <div class="field">
+                <label>Middle Name</label>
+                <%= text_input f, :middle_name, placeholder: "Enter middle name" %>
+                <%= error_tag f, :middle_name %>
+              </div>
+              <div class="field">
+                <label>Last Name</label>
+                <%= text_input f, :last_name, placeholder: "Enter last name" %>
+                <%= error_tag f, :last_name %>
+              </div>
+            </div>
+            <div class="field">
+              <label>Username</label>
+              <%= text_input f, :username, placeholder: "Enter username" %>
+              <%= error_tag f, :username %>
+            </div>
+            <div class="field">
+              <label>Password</label>
+              <%= text_input f, :password, placeholder: "Enter password", type: "password" %>
+              <%= error_tag f, :password %>
+            </div>
+            <button class="ui right floated green button">
+              <i class="save icon"></i>
+              Submit
+            </button>
+            <a href="/user" class="ui button">
+              <i class="chevron left icon"></i>
+              Back to User Index
+            </a>
+          <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+
+<a href="/" class="ui right floated button">
+  <i class="sign out alternate icon"></i>
+  Log Out
+</a>

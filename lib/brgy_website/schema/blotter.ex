@@ -3,17 +3,17 @@ defmodule BrgyWebsite.Schemas.Blotter do
   import Ecto.Changeset
   alias BrgyWebsite.Schemas.Blotter
 
-  schema "blotter" do
+  schema "blotters" do
     field :c_first_name, :string
     field :c_middle_name, :string
     field :c_last_name, :string
     field :c_address, :string
-    field :c_mobile_phone, :string
+    field :c_phone, :string
     field :r_first_name, :string
     field :r_middle_name, :string
     field :r_last_name, :string
     field :r_address, :string
-    field :r_mobile_phone, :string
+    field :r_phone, :string
     field :case, :string
     field :description, :string
 
@@ -28,12 +28,12 @@ defmodule BrgyWebsite.Schemas.Blotter do
       :c_middle_name,
       :c_last_name,
       :c_address,
-      :c_mobile_phone,
+      :c_phone,
       :r_first_name,
       :r_middle_name,
       :r_last_name,
       :r_address,
-      :r_mobile_phone,
+      :r_phone,
       :case,
       :description
     ])

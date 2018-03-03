@@ -1,0 +1,60 @@
+<div class="ui segment" id="official">
+  <div class="ui grid">
+    <div class="two wide column">
+      <div class="ui vertical basic buttons">
+        <a href="/blotter" class="ui button">Blotter</a>
+        <%# <a href="/news" class="ui button">News</a> %>
+        <a href="/official" class="ui button disabled">Officials</a>
+        <a href="/user" class="ui button">User</a>
+      </div>
+    </div>
+    <div class="fourteen wide column">
+      <div class="ui segment">
+          <h3> Edit <%= "#{@official.first_name} #{@official.middle_name} #{@official.last_name}" %>. </h3>
+          <%= form_for @changeset, page_path(@conn, :update_official, @official), [class: "ui form frm_official", method: "put"], fn f -> %>
+            <div class="three fields">
+              <div class="field">
+                <label>First Name</label>
+                <%= text_input f, :first_name, placeholder: "Enter first name" %>
+                <%= error_tag f, :first_name %>
+              </div>
+              <div class="field">
+                <label>Middle Name</label>
+                <%= text_input f, :middle_name, placeholder: "Enter middle name" %>
+                <%= error_tag f, :middle_name %>
+              </div>
+              <div class="field">
+                <label>Last Name</label>
+                <%= text_input f, :last_name, placeholder: "Enter last name" %>
+                <%= error_tag f, :last_name %>
+              </div>
+            </div>
+            <div class="field">
+              <label>Position</label>
+              <%= text_input f, :position, placeholder: "Enter position" %>
+              <%= error_tag f, :position %>
+            </div>
+            <button class="ui right floated green button">
+              <i class="save icon"></i>
+              Submit
+            </button>
+          <% end %>
+            <a href="/official" class="ui button">
+              <i class="chevron left icon"></i>
+              Back to Official Index
+            </a>
+          <%= form_for @changeset, page_path(@conn, :delete_official, @official), [class: "ui form", style: "float: right;", method: "delete"], fn f -> %>
+            <button class="ui right floated button">
+              <i class="trash icon"></i>
+              Delete
+            </button>
+          <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+
+<a href="/" class="ui right floated button">
+  <i class="sign out alternate icon"></i>
+  Log Out
+</a>

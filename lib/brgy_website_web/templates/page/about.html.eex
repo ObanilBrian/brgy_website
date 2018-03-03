@@ -22,43 +22,23 @@
       <h2 class="ui header">Barangay Officials</h2>
       <div class="ui clearing divider"></div>
       <p>
-
-        <div class="ui centered card">
-          <div class="image">
-            <img src="/images/icon.png">
-          </div>
-          <div class="content text-center">
-            <a class="header">Some Name</a>
-            <span>Barangay Captain</span>
-          </div>
-        </div>
-
-        <br><br><br><br>
-
-        <div class="ui two column grid">
-          <div class="column">
-            <div class="ui centered card">
-              <div class="image">
-                <img src="/images/icon.png">
-              </div>
-              <div class="content">
-                <a class="header">Some Name</a>
-                <span>Barangay Captain</span>
-              </div>
-            </div>
-          </div>
-          <div class="column">
-            <div class="ui centered card">
-              <div class="image">
-                <img src="/images/icon.png">
-              </div>
-              <div class="content">
-                <a class="header">Some Name</a>
-                <span>Barangay Captain</span>
-              </div>
-            </div>
-          </div>
-        </div>
+        <table class="ui celled padded table">
+          <thead>
+            <tr>
+            <th>Position</th>
+            <th>Name</th>
+          </tr></thead>
+          <tbody>
+          <%= for o <- @official do %>
+            <tr>
+              <td><%= o.position %></td>
+              <td>
+                <%= "#{o.first_name} #{o.middle_name} #{o.last_name}" %>
+              </td>
+            </tr>
+          <% end %>
+          </tbody>
+        </table>
       </p>
     </div>
   </div>

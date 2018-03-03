@@ -1,71 +1,126 @@
 <div class="ui grid" id="report">
   <div class="sixteen wide column">
-    <form class="ui form">
+    <%= form_for @changeset, page_path(@conn, :add_blotter), [class: "ui form frm_blotter"], fn f -> %>
       <h2>Please fill up all required fields to blotter a person.</h2>
       <div class="ui segment">
         <h3>Complainant</h3>
         <div class="field">
           <label>First Name</label>
-          <input type="text" name="first-name" placeholder="First Name">
+          <%= text_input f, :c_first_name, placeholder: "Enter first name" %>
+          <%= error_tag f, :first_name %>
         </div>
         <div class="field">
           <label>Middle Name</label>
-          <input type="text" name="middle-name" placeholder="Last Name">
+          <%= text_input f, :c_middle_name, placeholder: "Enter middle name" %>
+          <%= error_tag f, :first_name %>
         </div>
         <div class="field">
           <label>Last Name</label>
-          <input type="text" name="last-name" placeholder="Last Name">
+          <%= text_input f, :c_last_name, placeholder: "Enter last name" %>
+          <%= error_tag f, :last_name %>
         </div>
         <div class="field">
           <label>Address</label>
-          <input type="text" name="last-name" placeholder="Last Name">
+          <%= text_input f, :c_address, placeholder: "Enter address" %>
+          <%= error_tag f, :c_address %>
         </div>
         <div class="field">
           <label>Phone Number</label>
-          <input type="text" name="last-name" placeholder="Last Name">
+          <%= number_input f, :c_phone, placeholder: "Enter phone" %>
+          <%= error_tag f, :c_phone %>
         </div>
       </div>
       <div class="ui segment">
         <h3>Respondent</h3>
         <div class="field">
           <label>First Name</label>
-          <input type="text" name="first-name" placeholder="First Name">
+          <%= text_input f, :r_first_name, placeholder: "Enter first name" %>
+          <%= error_tag f, :first_name %>
         </div>
         <div class="field">
           <label>Middle Name</label>
-          <input type="text" name="middle-name" placeholder="Last Name">
+          <%= text_input f, :r_middle_name, placeholder: "Enter middle name" %>
+          <%= error_tag f, :first_name %>
         </div>
         <div class="field">
           <label>Last Name</label>
-          <input type="text" name="last-name" placeholder="Last Name">
+          <%= text_input f, :r_last_name, placeholder: "Enter last name" %>
+          <%= error_tag f, :last_name %>
         </div>
         <div class="field">
           <label>Address</label>
-          <input type="text" name="last-name" placeholder="Last Name">
+          <%= text_input f, :r_address, placeholder: "Enter address" %>
+          <%= error_tag f, :c_address %>
         </div>
         <div class="field">
           <label>Phone Number</label>
-          <input type="text" name="last-name" placeholder="Last Name">
+          <%= number_input f, :r_phone, placeholder: "Enter phone" %>
+          <%= error_tag f, :c_phone %>
         </div>
       </div>
       <div class="ui segment">
         <h3>Details</h3>
         <div class="field">
           <label>Case</label>
-          <input type="text" name="first-name" placeholder="First Name">
+          <%= select f, :case, ["UNLAWFUL USEOF MEANS OF PUBLICATION AND UNLAWFUL UTTERANCES (ART. 154 );",
+            "ALARMS AND SCANDALS (ART. 155 );",
+            "USING FALSECERTIFICATES (ART. 175 );",
+            "USING FICTITIOUS NAMES AND CONCEALING TRUE NAMES(ART. 178 );",
+            "ILLEGAL USEOF UNIFORMS AND INSIGNIAS (ART. 179 );",
+            "PHYSICAL INJURIESINFLICTED IN A TUMULTUOUS AFFRAY(ART. 252 );",
+            "GIVING ASSISTANCETO CONSUMMATED SUICIDE (ART. 253 );",
+            "RESPONSIBILITYOF PARTICIPANTSIN A DUEL IF ONLY PHYSICAL INJURIESARE INFLICTED OR NO PHYSICAL INJURIES HAVE BEEN INFLICTED (ART. 260 );",
+            "LESS SERIOUS PHYSICAL INJURIES (ART. 265 );",
+            "SLIGHT PHYSICAL INJURIESAND MALTREATMENT (ART. 266 );",
+            "UNLAWFUL ARREST (ART. 269 );",
+            "INDUCING A MINOR TO ABANDON HIS/ HER HOME (ART.271 );",
+            "ABANDONMENT OF A PERSONIN DANGER AND ABANDONMENT OF ONE’S OWN VICTIM (ART. 275 );",
+            "ABANDONING A MINOR (A CHILD UNDER SEVEN[7] YEARS OLD) (ART. 276 );",
+            "ABANDONMENT OF A MINOR BY PERONSENTRUSTEDWITH HIS/ HER CUSTODY; INDIFFERENCEOF PARENTS (ART. 277 );",
+            "QUALIFIED TRESSPASSTO DWELLING (WITHOUT THE USEOF VIOLENCEAND INTIMIDATION ). (ART. 280 );",
+            "OTHER FORMS OF TRESSPASS (ART. 281 );",
+            "LIGHT THREATS (ART. 283 );",
+            "OTHER LIGHT THREATS (ART. 285 );",
+            "GRAVE COERCION (ART. 286 );",
+            "LIGHT COERCION (ART. 287 );",
+            "OTHER SIMILAR COERCIONS (COMPULSORYPURCHASEOF MERCHANDISEAND PAYMENT OF WAGESBY MEANS OF TOKENS). (ART. 288 );",
+            "FORMATION, MAINTENANCE AND PROHIBITION OF COMBINATION OF CAPITAL OR LABOR THROUGH VIOLENCE OR THREATS (ART. 289);",
+            "DISCOVERING SECRETS THROUGH SEIZURE AND CORRESPONDENCE (ART. 290);",
+            "REVEALING SECRETS WITH ABUSE OF AUTHORITY (ART. 291);",
+            "THEFT (IF THE VALUE OF THE PROPERTY STOLEN DOES NOT EXCEED P50.00). (ART. 309);",
+            "QUALIFIED THEFT (IF THE AMOUNT DOES NOT EXCEED P500). (ART. 310);",
+            "OCCUPATION OF REAL PROPERTY OR USURPATION OF REAL RIGHTS IN PROPERTY (ART 312);",
+            "ALTERING BOUNDARIES OR LANDMARKS (ART. 313);",
+            "SWINDLING OR ESTAFA (IF THE AMOUNT DOES NOT EXCEED P200.00). (ART. 315);",
+            "OTHER FORMS OF SWINDLING (ART. 316);",
+            "SWINDLING A MINOR (ART. 317);",
+            "OTHER DECEITS (ART. 318);",
+            "REMOVAL, SALE OR PLEDGE OF MORTGAGED PROPERTY (ART. 319);",
+            "SPECIAL CASES OF MALICIOUS MISCHIEF (IF THE VALUE OF THE DAMAGED PROPERTY DOES NOT EXCEED P1,000.00). (ART 328);",
+            "OTHER MISCHIEFS (IF THE VALUE OF THE DAMAGED PROPERTY DOES NOT EXCEED P1,000.00). (ART. 329);",
+            "SIMPLE SEDUCTION (ART. 338);",
+            "ACTS OF LASCIVIOUSNESS WITH THE CONSENT OF THEOFFENDED PARTY (ART 339);",
+            "THREATENING TO PUBLISH AND OFFER TO PREVENT SUCH PUBLICATION FOR COMPENSATION (ART. 356);",
+            "PROHIBITING PUBLICATION OF ACTS REFERRED TO IN THE COURSE OF OFFICIAL PROCEEDINGS (ART. 357);",
+            "INCRIMINATING INNOCENT PERSONS (ART. 363);",
+            "INTRIGUING AGAINST HONOR (ART. 364);",
+            "ISSUING CHECKS WITHOUT SUFFICIENT FUNDS (BP 22);",
+            "OFFENSES WITH MAXIMUM PENALTY OF 1 YEAR AND EXCEEDING FINE FIVE THOUSAND (P5,000.00);",
+            "OFFENSES WITH NO PRIVATE PARTY;",
+            "REAL PROPERTIES IN DIFFERENT CITIES OR MUNICIPALITIES, DISPUTES THAT NEED URGENT LEGAL ACTION, LABOR DISPUTES, LAND DISPUTES AND ACTION TO ANNUL A JUDGMENT UPON A COMPROMISE."], prompt: "Enter case", class: "ui selection dropdown" %>
+          <%= error_tag f, :case %>
         </div>
         <div class="field">
           <label>Description</label>
-          <input type="text" name="middle-name" placeholder="Last Name">
+          <%= text_input f, :description, placeholder: "Enter description" %>
+          <%= error_tag f, :description %>
         </div>
       </div>
       <div class="text-center">
         <div class="ui buttons">
-          <button class="ui button"><i class="eraser icon"></i>Clear</button>
-          <div class="or"></div>
-          <button class="ui positive button"><i class="save icon"></i>Save</button>
+          <button class="ui positive button"><i class="paper plane  icon"></i>Submit</button>
         </div>
       </div>
-    </form>
+    <% end %>
   </div>
 </div>

@@ -1,0 +1,41 @@
+<div class="ui segment" id="blotter">
+  <div class="ui grid">
+    <div class="two wide column">
+      <div class="ui vertical basic buttons">
+        <a href="/blotter" class="ui button disabled">Blotter</a>
+        <%# <a href="/news" class="ui button">News</a> %>
+        <a href="/official" class="ui button">Officials</a>
+        <a href="/user" class="ui button">User</a>
+      </div>
+    </div>
+    <div class="fourteen wide column">
+      <div class="ui segment">
+        <table role="datatable" class="ui celled table">
+          <thead>
+            <tr>
+              <th>Id</th>
+              <th>Complainant</th>
+              <th>Respondent</th>
+              <th>Case</th>
+            </tr>
+          </thead>
+          <tbody>
+            <%= for b <- @blotters do %>
+              <tr>
+                <td><a href="/blotter/<%= b.id %>"><%= b.id %></a></td>
+                <td><%= "#{b.c_first_name} #{b.c_middle_name} #{b.c_last_name}" %></td>
+                <td><%= "#{b.r_first_name} #{b.r_middle_name} #{b.r_last_name}" %></td>
+                <td><%= b.case %></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+<a href="/" class="ui right floated button">
+  <i class="sign out alternate icon"></i>
+  Log Out
+</a>
