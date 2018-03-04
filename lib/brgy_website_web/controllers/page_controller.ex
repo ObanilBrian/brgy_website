@@ -8,6 +8,8 @@ defmodule BrgyWebsiteWeb.PageController do
     Schemas.Blotter,
     Schemas.News,
     Schemas.Official,
+    Schemas.Auth,
+    Schemas.Guardian
   }
 
   def index(conn, _params) do
@@ -36,47 +38,68 @@ defmodule BrgyWebsiteWeb.PageController do
   def login(conn, _params) do
     changeset = 
       User.changeset(%User{}, %{}) 
-    has_error = "none"
-    render conn, "login.html", changeset: changeset, has_error: has_error
+    render conn, "login.html", changeset: changeset
   end
 
   def validate_login(conn, %{"user" => user}) do
     username = user["username"]
     password = user["password"]
 
-    user = 
-      User
-      |> where([u], ilike(u.username, ^username))
-      |> Repo.all
+    Auth.authenticate_user(username, password)
+    |> login_reply(conn)
+
+    # user = 
+    #   User
+    #   |> where([u], ilike(u.username, ^username))
+    #   |> Repo.all
     
-    if Enum.empty?(user) do
-      changeset = 
-        User.changeset(%User{}, %{}) 
-      conn
-      |> put_flash(:error, "Username does not exist!")
-      |> render("login.html", changeset: changeset)
-    else
-      if not is_nil(List.first(user)) do
-        user = List.first(user)
-        if user.password == password do
-          conn
-          |> put_flash(:info, "Welcome back!")
-          |> redirect(to: "/blotter")
-        else
-          changeset = 
-            User.changeset(%User{}, %{}) 
-          conn
-          |> put_flash(:error, "Password is invalid!")
-          |> render("login.html", changeset: changeset)
-        end
-      else
-        changeset = 
-            User.changeset(%User{}, %{}) 
-        conn
-        |> put_flash(:error, "Password is invalid!")
-        |> render("login.html", changeset: changeset)
-      end
-    end
+    # if Enum.empty?(user) do
+    #   changeset = 
+    #     User.changeset(%User{}, %{}) 
+    #   conn
+    #   |> put_flash(:error, "Username does not exist!")
+    #   |> render("login.html", changeset: changeset)
+    # else
+    #   if not is_nil(List.first(user)) do
+    #     user = List.first(user)
+    #     if user.password == password do
+    #       conn
+    #       |> put_flash(:info, "Welcome back!")
+    #       |> redirect(to: "/blotter")
+    #     else
+    #       changeset = 
+    #         User.changeset(%User{}, %{}) 
+    #       conn
+    #       |> put_flash(:error, "Password is invalid!")
+    #       |> render("login.html", changeset: changeset)
+    #     end
+    #   else
+    #     changeset = 
+    #         User.changeset(%User{}, %{}) 
+    #     conn
+    #     |> put_flash(:error, "Password is invalid!")
+    #     |> render("login.html", changeset: changeset)
+    #   end
+    # end
+  end
+
+  defp login_reply({:error, error}, conn) do
+    conn
+    |> put_flash(:error, error)
+    |> redirect(to: "/login")
+  end
+
+  defp login_reply({:ok, user}, conn) do
+    conn
+    |> put_flash(:success, "Welcome back!")
+    |> Guardian.Plug.sign_in(user)
+    |> redirect(to: "/blotter")
+  end
+
+  def logout(conn, _) do
+    conn
+    |> Guardian.Plug.sign_out()
+    |> redirect(to: page_path(conn, :login))
   end
 
   # Start of NEWS

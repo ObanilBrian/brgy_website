@@ -2,6 +2,7 @@ defmodule BrgyWebsite.Schemas.User do
   use Ecto.Schema
   import Ecto.Changeset
   alias BrgyWebsite.Schemas.User
+  alias Comeonin.Bcrypt
 
   schema "users" do
     field :first_name, :string
@@ -23,5 +24,13 @@ defmodule BrgyWebsite.Schemas.User do
       :username,
       :password
       ])
+    |> validate_required([:username, :password])     
+    |> put_pass_hash()  
   end
+
+  defp put_pass_hash(%Ecto.Changeset{valid?: true, changes: %{password: password}} = changeset) do
+    change(changeset, password: Bcrypt.hashpwsalt(password))
+  end
+
+  defp put_pass_hash(changeset), do: changeset
 end

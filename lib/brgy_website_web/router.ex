@@ -13,6 +13,14 @@ defmodule BrgyWebsiteWeb.Router do
     plug :accepts, ["json"]
   end
 
+  pipeline :auth do
+    plug BrgyWebsite.Schemas.Pipeline
+  end
+
+  pipeline :ensure_auth do
+    plug Guardian.Plug.EnsureAuthenticated
+  end
+
   scope "/", BrgyWebsiteWeb do
     pipe_through :browser # Use the default browser stack
 
@@ -22,7 +30,12 @@ defmodule BrgyWebsiteWeb.Router do
 
     get "/login", PageController, :login
     post "/validate_login", PageController, :validate_login
-    
+  
+  end
+
+  scope "/", BrgyWebsiteWeb do
+    pipe_through [:browser, :auth, :ensure_auth]
+
     get "/blotter", PageController, :load_all_blotters
     get "/blotter/:id", PageController, :load_blotter
     post "/blotter", PageController, :add_blotter
