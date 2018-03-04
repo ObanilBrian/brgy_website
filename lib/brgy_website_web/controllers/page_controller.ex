@@ -11,7 +11,8 @@ defmodule BrgyWebsiteWeb.PageController do
   }
 
   def index(conn, _params) do
-    render conn, "index.html"
+    conn
+    |> render("index.html")
   end
 
   def about(conn, _params) do
@@ -51,25 +52,29 @@ defmodule BrgyWebsiteWeb.PageController do
     if Enum.empty?(user) do
       changeset = 
         User.changeset(%User{}, %{}) 
-      has_error = "block"
-      render conn, "login.html", changeset: changeset, has_error: has_error
+      conn
+      |> put_flash(:error, "Username does not exist!")
+      |> render("login.html", changeset: changeset)
     else
       if not is_nil(List.first(user)) do
         user = List.first(user)
         if user.password == password do
           conn
+          |> put_flash(:info, "Welcome back!")
           |> redirect(to: "/blotter")
         else
           changeset = 
             User.changeset(%User{}, %{}) 
-          has_error = "block"
-          render conn, "login.html", changeset: changeset, has_error: has_error
+          conn
+          |> put_flash(:error, "Password is invalid!")
+          |> render("login.html", changeset: changeset)
         end
       else
         changeset = 
             User.changeset(%User{}, %{}) 
-        has_error = "block"
-        render conn, "login.html", changeset: changeset, has_error: has_error
+        conn
+        |> put_flash(:error, "Password is invalid!")
+        |> render("login.html", changeset: changeset)
       end
     end
   end

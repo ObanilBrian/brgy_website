@@ -8,6 +8,7 @@ exports.config = {
           "vendor/semantic/dist/**",
           "vendor/jquery/**",
           "vendor/datatables/**",
+          "vendor/alertify/**",
           "js/**"
         ]
       },
@@ -16,6 +17,7 @@ exports.config = {
           "vendor/jquery/jquery.min.js",
           "vendor/semantic/dist/semantic.min.js",
           "vendor/datatables/datatable.min.js",
+          "vendor/alertify/alertify.js",
           "js/app.js"
         ]
       }

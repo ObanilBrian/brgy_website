@@ -33,9 +33,6 @@
         </div>
       </header>
 
-      <p class="alert alert-info" role="alert"><%= get_flash(@conn, :info) %></p>
-      <p class="alert alert-danger" role="alert"><%= get_flash(@conn, :error) %></p>
-      
       <main role="main">
         <%= render @view_module, @view_template, assigns %>
       </main>
@@ -50,5 +47,28 @@
 
     </div> <!-- /container -->
     <script src="<%= static_path(@conn, "/js/app.js") %>"></script>
+
   </body>
 </html>
+
+<%
+info = get_flash(@conn, :info)
+error = get_flash(@conn, :error)
+%>
+<%= if info do %>
+  <script type="text/javascript">
+    alertify.set('notifier','position', 'top-right');
+    $(function() {
+      alertify.success('<i class="close icon"></i><%= info %>')
+    });
+  </script>
+<% end %>
+<%= if error do %>
+  <script type="text/javascript">
+    alertify.set('notifier','position', 'top-right');
+    $(function() {
+      alertify.error('<i class="close icon"></i><%= error %>')
+    });
+  </script>
+<% end %>
+

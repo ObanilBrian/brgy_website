@@ -1,12 +1,5 @@
 <div class="ui grid" id="user">
   <div class="sixteen wide column">
-    <div class="ui negative message" style="display:<%= @has_error %>">
-      <i class="close icon"></i>
-      <div class="header">
-        Invalid Credentials
-      </div>
-      <p>Please check your credentials
-    </p></div>
     <%= form_for @changeset, page_path(@conn, :validate_login), [class: "ui form frm_user"], fn f -> %>
     <h2>Please log in to continue.</h2>
     <div class="ui segment">
@@ -17,7 +10,7 @@
       </div>
       <div class="field">
         <label>Password</label>
-        <%= text_input f, :password, placeholder: "Enter password" %>
+        <%= text_input f, :password, placeholder: "Enter password", type: "password" %>
         <%= error_tag f, :password %>
       </div>
     </div>
