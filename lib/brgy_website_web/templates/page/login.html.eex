@@ -2,6 +2,7 @@
   <div class="sixteen wide column">
     <%= form_for @changeset, page_path(@conn, :validate_login), [class: "ui form frm_user"], fn f -> %>
     <h2>Please log in to continue.</h2>
+    <a href="/register"> New User? Register here </a>
     <div class="ui segment">
       <div class="field">
         <label>Username</label>
@@ -21,6 +22,5 @@
       </div>
     </div>
   <% end %>
-
   </div>
 </div>

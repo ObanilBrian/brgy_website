@@ -30,12 +30,14 @@ defmodule BrgyWebsiteWeb.Router do
 
     get "/login", PageController, :login
     post "/validate_login", PageController, :validate_login
-  
+
+    get "/register", PageController, :register_user
+    post "/user2", PageController, :add_user2
   end
 
   scope "/", BrgyWebsiteWeb do
-    #pipe_through [:browser, :auth, :ensure_auth]
-    pipe_through :browser
+    pipe_through [:browser, :auth, :ensure_auth]
+    #pipe_through :browser
 
     get "/logout", PageController, :logout
 
@@ -51,6 +53,7 @@ defmodule BrgyWebsiteWeb.Router do
     post "/news", PageController, :add_news
     put "/news/:id", PageController, :update_news
     delete "/news/:id", PageController, :delete_news
+    get "/view_news/:id", PageController, :view_news
 
     get "/official", PageController, :load_all_official
     get "/official_new", PageController, :new_official
@@ -62,10 +65,9 @@ defmodule BrgyWebsiteWeb.Router do
     get "/user", PageController, :load_all_user
     get "/user_new", PageController, :new_user
     get "/user/:id", PageController, :load_user
-    post "/user", PageController, :add_user
     put "/user/:id", PageController, :update_user
+    post "/user", PageController, :add_user
     delete "/user/:id", PageController, :delete_user
-
   end
 
   # Other scopes may use custom stacks.

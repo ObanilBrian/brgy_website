@@ -1,0 +1,16 @@
+<div class="ui grid">
+  <div class="sixteen wide column">
+    <h1 class="ui header text-center">
+      <%= @news.title %>
+    </h1>
+    <p class="text-center">
+      <i> By: <%= @news.author %> </i>
+    </p>
+    <h4 class="ui horizontal divider header">
+      <%= @news.subtitle %>
+    </h4>
+    <p>
+      <%= @news.content %>
+    </p>
+  </div>
+</div>

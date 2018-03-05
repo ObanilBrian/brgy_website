@@ -14,8 +14,12 @@ defmodule BrgyWebsiteWeb.PageController do
   alias Comeonin.Bcrypt
 
   def index(conn, _params) do
+    news =
+      News
+      |> Repo.all
+
     conn
-    |> render("index.html")
+    |> render("index.html", news: news)
   end
 
   def about(conn, _params) do
@@ -245,6 +249,36 @@ defmodule BrgyWebsiteWeb.PageController do
       changeset: changeset) 
   end
 
+  def register_user(conn, _) do
+    changeset = 
+      User.changeset(%User{}, %{})
+
+    conn
+    |> render(
+      "register_user.html",
+      changeset: changeset) 
+  end
+
+  def add_user2(conn, %{"user" => user}) do
+    result = 
+      %User{}
+      |> User.changeset(user)
+      |> Repo.insert
+
+    case result do
+      {:ok, user} ->
+        conn
+        |> put_flash(:info, "User was succesfully added!")
+        |> redirect(to: "/login")
+      {:error, changeset} ->
+        conn
+        |> put_flash(:error, "Username was already taken!")
+        |> render(
+          "register_user.html",
+          changeset: changeset) 
+    end
+  end
+
   def add_user(conn, %{"user" => user}) do
     result = 
       %User{}
@@ -453,6 +487,19 @@ defmodule BrgyWebsiteWeb.PageController do
     conn
     |> put_flash(:info, "News was succesfully deleted!")
     |> redirect(to: "/news")
+  end
+
+  def view_news(conn, %{"id" => id}) do
+    news = 
+      News
+      |> where([n], n.id == ^id)
+      |> Repo.one
+    
+    conn
+    |> render(
+      "load_news.html",
+      news: news
+    )
   end
 
   # End of NEWS
