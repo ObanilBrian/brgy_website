@@ -1,16 +1,16 @@
-<div class="ui segment" id="official">
+<div class="ui segment" id="news">
   <div class="ui grid">
     <div class="two wide column">
       <div class="ui vertical basic buttons">
         <a href="/blotter" class="ui button">Blotter</a>
-        <a href="/news" class="ui button">News</a>
-        <a href="/official" class="ui button disabled">Officials</a>
+        <a href="/news" class="ui button disabled">News</a>
+        <a href="/official" class="ui button">Officials</a>
         <a href="/user" class="ui button">User</a>
       </div>
     </div>
     <div class="fourteen wide column">
       <div class="ui segment">
-        <a href="/official_new" class="ui green button">
+        <a href="/news_new" class="ui green button">
           <i class="add icon"></i>
           Add
         </a>
@@ -19,16 +19,16 @@
           <thead>
             <tr>
               <th>Id</th>
-              <th>Name</th>
-              <th>Position</th>
+              <th>Title</th>
+              <th>Author</th>
             </tr>
           </thead>
           <tbody>
-            <%= for o <- @official do %>
+            <%= for n <- @news do %>
               <tr>
-                <td><a href="/official/<%= o.id %>"><%= o.id %></a></td>
-                <td><%= "#{o.first_name} #{o.middle_name} #{o.last_name}" %></td>
-                <td><%= o.position %></td>
+                <td><a href="/news/<%= n.id %>"><%= n.id %></a></td>
+                <td><%= n.title %></td>
+                <td><%= n.author %></td>
               </tr>
             <% end %>
           </tbody>

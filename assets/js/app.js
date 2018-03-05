@@ -228,3 +228,49 @@ if(official_state == true) {
     }
   });
 }
+
+let news_state = $('#news').is(":visible");
+if(news_state == true) {
+  $('#nav_admin').addClass('active')
+
+
+  $('table[role="datatable"]').dataTable({
+    dom:
+    "<'ui grid'"+
+      "<'row'"+
+        "<'eight wide column'l>"+
+        "<'right aligned eight wide column'f>"+
+      ">"+
+      "<'row dt-table'"+
+        "<'sixteen wide column'tr>"+
+      ">"+
+      "<'row'"+
+        "<'seven wide column'i>"+
+        "<'right aligned nine wide column'p>"+
+      ">"+
+    ">",
+    renderer: 'semanticUI',
+    pagingType: "full_numbers",
+    language: {
+    emptyTable:     "No Records Found!",
+    zeroRecords:    "No Matching Records Found!",
+    search:         "Search",
+    paginate: {
+      first: "<i class='angle single left icon'></i> First",
+      previous: "<i class='angle double left icon'></i> Previous",
+      next: "Next <i class='angle double right icon'></i>",
+      last: "Last <i class='angle single right icon'></i>"
+    }
+    }
+    }); 
+
+  $('.frm_news')
+  .form({
+    fields: {
+      'news[title]' : 'empty',
+      'news[subtitle]' : 'empty',
+      'news[author]' : 'empty',
+      'news[content]' : 'empty'
+    }
+  });
+}

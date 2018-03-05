@@ -1,0 +1,58 @@
+<div class="ui segment" id="news">
+  <div class="ui grid">
+    <div class="two wide column">
+      <div class="ui vertical basic buttons">
+        <a href="/blotter" class="ui button">Blotter</a>
+        <a href="/news" class="ui button disabled">News</a>
+        <a href="/official" class="ui button disabled">Officials</a>
+        <a href="/user" class="ui button">User</a>
+      </div>
+    </div>
+    <div class="fourteen wide column">
+      <div class="ui segment">
+          <h3> Edit <%= "#{@news.title}" %>. </h3>
+          <%= form_for @changeset, page_path(@conn, :update_news, @news), [class: "ui form frm_news", method: "put"], fn f -> %>
+            <div class="field">
+              <label>Title</label>
+              <%= text_input f, :title, placeholder: "Enter title" %>
+              <%= error_tag f, :title %>
+            </div>
+            <div class="field">
+              <label>Subtitle</label>
+              <%= text_input f, :subtitle, placeholder: "Enter subtitle" %>
+              <%= error_tag f, :subtitle %>
+            </div>
+            <div class="field">
+              <label>Author</label>
+              <%= text_input f, :author, placeholder: "Enter author" %>
+              <%= error_tag f, :author %>
+            </div>
+            <div class="field">
+              <label>Content</label>
+              <%= textarea f, :content, placeholder: "Enter content" %>
+              <%= error_tag f, :content %>
+            </div>
+            <button class="ui right floated green button">
+              <i class="save icon"></i>
+              Submit
+            </button>
+          <% end %>
+            <a href="/news" class="ui button">
+              <i class="chevron left icon"></i>
+              Back to News Index
+            </a>
+          <%= form_for @changeset, page_path(@conn, :delete_news, @news), [class: "ui form", style: "float: right;", method: "delete"], fn f -> %>
+            <button class="ui right floated button">
+              <i class="trash icon"></i>
+              Delete
+            </button>
+          <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+
+<a href="/logout" class="ui right floated button">
+  <i class="sign out alternate icon"></i>
+  Log Out
+</a>

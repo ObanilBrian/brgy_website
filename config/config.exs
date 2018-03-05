@@ -22,7 +22,11 @@ config :logger, :console,
   format: "$time $metadata[$level] $message\n",
   metadata: [:request_id]
 
-config :brgy_website, BrgyWebsiteW.Schemas.Guardian,
+config :brgy_website, BrgyWebsite.Schemas.Pipeline,
+  module: BrgyWebsite.Guardian.Common,
+  error_handler: BrgyWebsiteWeb.Auth.UeberauthController
+
+config :brgy_website, BrgyWebsite.Schemas.Guardian,
   issuer: "BrgyWebsite", # Name of your app/company/product
   secret_key: "UT/gm7t7T9DZJNFDC7X5GGOviV2SoXLmqAvYR9lmKybDZFXUbHTwTh2rTZ/0Qgn3" # Replace this with the output of the mix command
 

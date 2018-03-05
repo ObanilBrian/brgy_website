@@ -34,7 +34,10 @@ defmodule BrgyWebsiteWeb.Router do
   end
 
   scope "/", BrgyWebsiteWeb do
-    pipe_through [:browser, :auth, :ensure_auth]
+    #pipe_through [:browser, :auth, :ensure_auth]
+    pipe_through :browser
+
+    get "/logout", PageController, :logout
 
     get "/blotter", PageController, :load_all_blotters
     get "/blotter/:id", PageController, :load_blotter
@@ -43,7 +46,8 @@ defmodule BrgyWebsiteWeb.Router do
     delete "/blotter/:id", PageController, :delete_blotter
 
     get "/news", PageController, :load_all_news
-    get "/news/:id", PageController, :edit_news
+    get "/news_new", PageController, :new_news
+    get "/news/:id", PageController, :load_news
     post "/news", PageController, :add_news
     put "/news/:id", PageController, :update_news
     delete "/news/:id", PageController, :delete_news

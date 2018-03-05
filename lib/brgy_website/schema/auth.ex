@@ -13,10 +13,11 @@ defmodule BrgyWebsite.Schemas.Auth do
   defp check_password(nil, _), do: {:error, "Incorrect username or password"}
 
   defp check_password(user, plain_text_password) do
-    raise Bcrypt.checkpw(plain_text_password, user.password)
     case Bcrypt.checkpw(plain_text_password, user.password) do
       true -> {:ok, user}
       false -> {:error, "Incorrect username or password"}
     end
   end
+
+  def get_user!(id), do: Repo.get!(User, id)
 end

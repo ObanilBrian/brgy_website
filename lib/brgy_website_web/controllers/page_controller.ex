@@ -11,6 +11,7 @@ defmodule BrgyWebsiteWeb.PageController do
     Schemas.Auth,
     Schemas.Guardian
   }
+  alias Comeonin.Bcrypt
 
   def index(conn, _params) do
     conn
@@ -99,82 +100,9 @@ defmodule BrgyWebsiteWeb.PageController do
   def logout(conn, _) do
     conn
     |> Guardian.Plug.sign_out()
-    |> redirect(to: page_path(conn, :login))
+    |> put_flash(:success, "Succesfully logged out!")
+    |> redirect(to: page_path(conn, :index))
   end
-
-  # Start of NEWS
-
-  def load_all_news(conn, _params) do
-    news = 
-      News
-      |> Repo.all
-
-    conn
-    |> render(
-      "news.html",
-      news: news) 
-  end
-
-  def load_news(conn, %{"id" => id}) do
-    news =
-      News
-      |> where([b], b.id == ^id)
-      |> Repo.one
-    
-    conn
-    |> render(
-      "view_news.html",
-      news: news) 
-  end
-
-  def add_news(conn, %{"news" => news}) do
-    news_record = 
-      %News{}
-      |> News.changeset(news)
-      |> Repo.insert!
-    
-    conn
-    |> render(
-      "view_news.html",
-      news: news_record) 
-  end
-
-  def update_news(conn, %{"id" => id, "news" => news}) do
-    news_record =
-      News
-      |> where([b], b.id == ^id)
-      |> Repo.one
-
-    news_record
-    |> News.changeset(news)
-    |> Repo.update!
-
-    conn
-    |> render(
-      "view_news.html",
-      news: news_record) 
-  end
-
-  def delete_news(conn, %{"id" => id, "news" => news}) do
-    news_record =
-      News
-      |> where([b], b.id == ^id)
-      |> Repo.one
-
-    news_record
-    |> Repo.delete
-
-    news = 
-      News
-      |> Repo.all 
-
-    conn
-    |> render(
-      "news.html",
-      news: news) 
-  end
-
-  # End of NEWS
 
   # Start of OFFICIAL
 
@@ -235,6 +163,7 @@ defmodule BrgyWebsiteWeb.PageController do
       |> Repo.insert!
 
     conn
+    |> put_flash(:info, "Official was succesfully added!")
     |> redirect(to: "/official")
   end
 
@@ -249,6 +178,7 @@ defmodule BrgyWebsiteWeb.PageController do
     |> Repo.update!
 
     conn
+    |> put_flash(:info, "Official was succesfully updated!")
     |> redirect(to: "/official")
   end
 
@@ -262,6 +192,7 @@ defmodule BrgyWebsiteWeb.PageController do
     |> Repo.delete!
 
     conn
+    |> put_flash(:info, "Official was succesfully deleted!")
     |> redirect(to: "/official")
   end
 
@@ -315,13 +246,23 @@ defmodule BrgyWebsiteWeb.PageController do
   end
 
   def add_user(conn, %{"user" => user}) do
-    user_record = 
+    result = 
       %User{}
       |> User.changeset(user)
-      |> Repo.insert!
-    
-    conn
-    |> redirect(to: "/user")
+      |> Repo.insert
+
+    case result do
+      {:ok, user} ->
+        conn
+        |> put_flash(:info, "User was succesfully added!")
+        |> redirect(to: "/user")
+      {:error, changeset} ->
+        conn
+        |> put_flash(:error, "Username was already taken!")
+        |> render(
+          "new_user.html",
+          changeset: changeset) 
+    end
   end
 
   def update_user(conn, %{"id" => id, "user" => user}) do
@@ -335,6 +276,7 @@ defmodule BrgyWebsiteWeb.PageController do
     |> Repo.update!
 
     conn
+    |> put_flash(:info, "User was succesfully updated!")
     |> redirect(to: "/user")
   end
 
@@ -348,6 +290,7 @@ defmodule BrgyWebsiteWeb.PageController do
     |> Repo.delete
 
     conn
+    |> put_flash(:info, "User was succesfully deleted!")
     |> redirect(to: "/user")
   end
 
@@ -404,26 +347,115 @@ defmodule BrgyWebsiteWeb.PageController do
       |> Repo.insert!
     
     conn
-    |> redirect(to: "/")
+    |> put_flash(:info, "Blotter was succesfully reported!")
+    |> redirect(to: "/report")
   end
 
-  def update_blotter(conn, %{"id" => id, "blotter" => blotter}) do
-    blotter_record =
-      Blotter
-      |> where([b], b.id == ^id)
-      |> Repo.one
+  # def update_blotter(conn, %{"id" => id, "blotter" => blotter}) do
+  #   blotter_record =
+  #     Blotter
+  #     |> where([b], b.id == ^id)
+  #     |> Repo.one
 
-    blotter_record
-    |> Blotter.changeset(blotter)
-    |> Repo.update!
+  #   blotter_record
+  #   |> Blotter.changeset(blotter)
+  #   |> Repo.update!
+
+  #   conn
+  #   |> render(
+  #     "view_blotter.html",
+  #     blotter: blotter_record) 
+  # end
+
+  # End of BLOTTER
+
+  # Start of NEWS
+
+  def load_all_news(conn, _params) do
+    news = 
+      News
+      |> Repo.all
 
     conn
     |> render(
-      "view_blotter.html",
-      blotter: blotter_record) 
+      "news.html",
+      news: news) 
   end
 
-  # End of BLOTTER
+  def load_news(conn, %{"id" => id}) do
+    news =
+      News
+      |> where([b], b.id == ^id)
+      |> Repo.one
+    
+    params = %{
+      title: news.title,
+      subtitle: news.subtitle,
+      author: news.author,
+      content: news.content
+    }
+
+    changeset = 
+      News.changeset(%News{}, params)
+
+    conn
+    |> render(
+      "view_news.html",
+      news: news,
+      changeset: changeset) 
+  end
+
+  def new_news(conn, _) do
+    changeset = 
+      News.changeset(%News{}, %{})
+
+      conn
+      |> render(
+        "new_news.html",
+        changeset: changeset) 
+  end
+
+  def add_news(conn, %{"news" => news}) do
+    news_record = 
+      %News{}
+      |> News.changeset(news)
+      |> Repo.insert!
+    
+    conn
+    |> put_flash(:info, "News was succesfully added!")
+    |> redirect(to: "/news")
+  end
+
+  def update_news(conn, %{"id" => id, "news" => news}) do
+    news_record =
+      News
+      |> where([b], b.id == ^id)
+      |> Repo.one
+
+    news_record
+    |> News.changeset(news)
+    |> Repo.update!
+
+    conn
+    |> put_flash(:info, "News was succesfully updated!")
+    |> redirect(to: "/news")
+  end
+
+  def delete_news(conn, %{"id" => id}) do
+    news_record =
+      News
+      |> where([b], b.id == ^id)
+      |> Repo.one
+
+    news_record
+    |> Repo.delete
+
+    conn
+    |> put_flash(:info, "News was succesfully deleted!")
+    |> redirect(to: "/news")
+  end
+
+  # End of NEWS
 
   
 end

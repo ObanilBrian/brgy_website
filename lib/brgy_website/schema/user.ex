@@ -1,8 +1,10 @@
 defmodule BrgyWebsite.Schemas.User do
   use Ecto.Schema
   import Ecto.Changeset
+  import Ecto.{Query, Changeset}, warn: false
   alias BrgyWebsite.Schemas.User
   alias Comeonin.Bcrypt
+  alias BrgyWebsite.Repo
 
   schema "users" do
     field :first_name, :string
@@ -24,7 +26,8 @@ defmodule BrgyWebsite.Schemas.User do
       :username,
       :password
       ])
-    |> validate_required([:username, :password])     
+    |> validate_required([:username, :password])   
+    |> unique_constraint(:username)  
     |> put_pass_hash()  
   end
 

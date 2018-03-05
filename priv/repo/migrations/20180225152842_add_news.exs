@@ -5,7 +5,7 @@ defmodule BrgyWebsite.Repo.Migrations.AddNews do
     create table(:news) do
       add :title, :string
       add :subtitle, :string
-      add :author, references(:users)
+      add :author, :string
       add :content, :string
       add :banner, :binary
       

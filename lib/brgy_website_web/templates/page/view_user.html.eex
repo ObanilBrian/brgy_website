@@ -3,7 +3,7 @@
     <div class="two wide column">
       <div class="ui vertical basic buttons">
         <a href="/blotter" class="ui button">Blotter</a>
-        <%# <a href="/news" class="ui button">News</a> %>
+        <a href="/news" class="ui button">News</a>
         <a href="/official" class="ui button">Officials</a>
         <a href="/user" class="ui button disabled">User</a>
       </div>
@@ -36,11 +36,8 @@
             </div>
             <div class="field">
               <label>Password</label>
-              <div class="ui action input">
-                <%= text_input f, :password, placeholder: "Enter password", type: "password" %>
-                <%= error_tag f, :password %>
-                <a href="#!" class="ui basic button" id="pass_toggle"><i class="eye icon"></i> Reveal</a>
-              </div>
+              <%= text_input f, :password, placeholder: "Enter password", type: "password" %>
+              <%= error_tag f, :password %>
             </div>
             <button class="ui right floated green button">
               <i class="save icon"></i>
@@ -62,7 +59,7 @@
   </div>
 </div>
 
-<a href="/" class="ui right floated button">
+<a href="/logout" class="ui right floated button">
   <i class="sign out alternate icon"></i>
   Log Out
 </a>
