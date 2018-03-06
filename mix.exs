@@ -43,7 +43,10 @@ defmodule BrgyWebsite.Mixfile do
       {:cowboy, "~> 1.0"},
       {:guardian, "~> 1.0"},
       {:comeonin, "~> 4.0"},
-      {:bcrypt_elixir, "~> 0.12"}
+      {:bcrypt_elixir, "~> 0.12"},
+      {:arc, "~> 0.8.0"},
+      {:arc_ecto, "~> 0.7.0"},
+      {:poison, "~> 3.1"}
     ]
   end
 

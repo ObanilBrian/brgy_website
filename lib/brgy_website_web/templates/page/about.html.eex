@@ -25,12 +25,16 @@
         <table class="ui celled padded table">
           <thead>
             <tr>
+            <th>Picture</th>
             <th>Position</th>
             <th>Name</th>
           </tr></thead>
           <tbody>
           <%= for o <- @official do %>
             <tr>
+              <td>
+                <img height=100 width=auto src="<%=  App.ImageFile.url({@image.filename, @image})%>">
+              </td>
               <td><%= o.position %></td>
               <td>
                 <%= "#{o.first_name} #{o.middle_name} #{o.last_name}" %>

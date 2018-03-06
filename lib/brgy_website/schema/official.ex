@@ -8,7 +8,7 @@ defmodule BrgyWebsite.Schemas.Official do
     field :middle_name, :string
     field :last_name, :string
     field :position, :string
-    field :picture, :binary
+    field :picture, :string
 
     timestamps()
   end

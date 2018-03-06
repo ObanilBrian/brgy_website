@@ -7,7 +7,7 @@ defmodule BrgyWebsite.Repo.Migrations.AddOfficials do
       add :middle_name, :string
       add :last_name, :string
       add :position, :string
-      add :picture, :binary
+      add :picture, :string
       
       timestamps()
     end

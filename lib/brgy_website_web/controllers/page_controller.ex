@@ -9,7 +9,8 @@ defmodule BrgyWebsiteWeb.PageController do
     Schemas.News,
     Schemas.Official,
     Schemas.Auth,
-    Schemas.Guardian
+    Schemas.Guardian,
+    Schemas.Photo
   }
   alias Comeonin.Bcrypt
 
@@ -155,15 +156,33 @@ defmodule BrgyWebsiteWeb.PageController do
   end
 
   def add_official(conn, %{"official" => official}) do
-    if upload = official["picture"] do
-      extension = Path.extname(upload.filename)
-      name = "#{official["first_name"]} #{official["middle_name"]} #{official["last_name"]}"
-      File.cp(upload.path, "/media/#{name}-profile#{extension}")
-    end
+    # if upload = official["picture"] do
+    #   extension = Path.extname(upload.filename)
+    #   name = "#{official["first_name"]} #{official["middle_name"]} #{official["last_name"]}"
+    #   File.cp(upload.path, "/media/#{name}-profile#{extension}")
+    # end
+
+    photo_param = %{
+      name: official["last_name"],
+      filename: official["picture"]
+    }
+
+    photo = 
+      %Photo{}
+      |> Photo.changeset(photo_param)
+      |> Repo.insert!
+
+    official_params = %{
+      first_name: official["first_name"],
+      middle_name: official["middle_name"],
+      last_name: official["last_name"],
+      position: official["position"],
+      picture: Integer.to_string(photo.id)
+    }
     
     official_record = 
       %Official{}
-      |> Official.changeset(official)
+      |> Official.changeset(official_params)
       |> Repo.insert!
 
     conn
