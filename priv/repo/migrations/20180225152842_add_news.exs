@@ -7,7 +7,7 @@ defmodule BrgyWebsite.Repo.Migrations.AddNews do
       add :subtitle, :string
       add :author, :string
       add :content, :text
-      add :banner, :binary
+      add :banner, :string
       
       timestamps()
     end

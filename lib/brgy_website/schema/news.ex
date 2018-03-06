@@ -8,7 +8,7 @@ defmodule BrgyWebsite.Schemas.News do
     field :subtitle, :string
     field :author, :string
     field :content, :string
-    field :banner, :binary
+    field :banner, :string
 
     timestamps()
   end
@@ -20,7 +20,8 @@ defmodule BrgyWebsite.Schemas.News do
       :title,
       :subtitle,
       :author,
-      :content
+      :content,
+      :banner
       ])
   end
 end

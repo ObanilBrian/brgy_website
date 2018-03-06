@@ -34,6 +34,11 @@
               <%= text_input f, :position, placeholder: "Enter position" %>
               <%= error_tag f, :position %>
             </div>
+            <div class="field">
+              <label>Picture</label>
+              <%= file_input f, :picture, class: "form-control" %>
+              <%= error_tag f, :picture %>
+            </div>
             <button class="ui right floated green button">
               <i class="save icon"></i>
               Submit
