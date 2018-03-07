@@ -11,7 +11,7 @@
     <div class="fourteen wide column">
       <div class="ui segment">
           <h3> Edit <%= "#{@official.first_name} #{@official.middle_name} #{@official.last_name}" %>. </h3>
-          <%= form_for @changeset, page_path(@conn, :update_official, @official), [class: "ui form frm_official", method: "put"], fn f -> %>
+          <%= form_for @changeset, page_path(@conn, :update_official, @official), [class: "ui form frm_official", method: "put", multipart: true], fn f -> %>
             <div class="three fields">
               <div class="field">
                 <label>First Name</label>
@@ -33,6 +33,11 @@
               <label>Position</label>
               <%= text_input f, :position, placeholder: "Enter position" %>
               <%= error_tag f, :position %>
+            </div>
+            <div class="field">
+              <label>Picture</label>
+              <%= file_input f, :picture, class: "form-control", accept: ".jpg, .jpeg, .png" %>
+              <%= error_tag f, :picture %>
             </div>
             <button class="ui right floated green button">
               <i class="save icon"></i>

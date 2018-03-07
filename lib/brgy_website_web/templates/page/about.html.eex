@@ -25,7 +25,7 @@
         <table class="ui celled padded table">
           <thead>
             <tr>
-            <th>Picture</th>
+            <th width="20%">Picture</th>
             <th>Position</th>
             <th>Name</th>
           </tr></thead>
@@ -33,7 +33,10 @@
           <%= for o <- @official do %>
             <tr>
               <td>
-                <img height=100 width=auto src="<%=  App.ImageFile.url({@image.filename, @image})%>">
+                <% image = get_image(o.picture) %>
+                <%= if not is_nil(image) do %>
+                  <img height="150" width="300" src="<%= BrgyWebsite.ImageFile.url({image.filename, image})%>">
+                <% end %>
               </td>
               <td><%= o.position %></td>
               <td>

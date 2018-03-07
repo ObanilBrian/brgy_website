@@ -162,28 +162,35 @@ defmodule BrgyWebsiteWeb.PageController do
     #   File.cp(upload.path, "/media/#{name}-profile#{extension}")
     # end
 
-    photo_param = %{
-      name: official["last_name"],
-      filename: official["picture"]
-    }
-
-    photo = 
-      %Photo{}
-      |> Photo.changeset(photo_param)
-      |> Repo.insert!
-
-    official_params = %{
-      first_name: official["first_name"],
-      middle_name: official["middle_name"],
-      last_name: official["last_name"],
-      position: official["position"],
-      picture: Integer.to_string(photo.id)
-    }
-    
-    official_record = 
+    if Map.has_key?(official, "picture") do
+      photo_param = %{
+        name: official["last_name"],
+        filename: official["picture"]
+      }
+  
+      photo = 
+        %Photo{}
+        |> Photo.changeset(photo_param)
+        |> Repo.insert!
+  
+      official_params = %{
+        first_name: official["first_name"],
+        middle_name: official["middle_name"],
+        last_name: official["last_name"],
+        position: official["position"],
+        picture: Integer.to_string(photo.id)
+      }
+      
+      official_record = 
+        %Official{}
+        |> Official.changeset(official_params)
+        |> Repo.insert!
+    else
+      official_record = 
       %Official{}
-      |> Official.changeset(official_params)
+      |> Official.changeset(official)
       |> Repo.insert!
+    end
 
     conn
     |> put_flash(:info, "Official was succesfully added!")
@@ -196,9 +203,33 @@ defmodule BrgyWebsiteWeb.PageController do
       |> where([b], b.id == ^id)
       |> Repo.one
 
-    official_record
-    |> Official.changeset(official)
-    |> Repo.update!
+    if Map.has_key?(official, "picture") do
+      photo_param = %{
+        name: official["last_name"],
+        filename: official["picture"]
+      }
+  
+      photo = 
+        %Photo{}
+        |> Photo.changeset(photo_param)
+        |> Repo.insert!
+  
+      official_params = %{
+        first_name: official["first_name"],
+        middle_name: official["middle_name"],
+        last_name: official["last_name"],
+        position: official["position"],
+        picture: Integer.to_string(photo.id)
+      }
+
+      official_record
+      |> Official.changeset(official_params)
+      |> Repo.update!
+    else
+      official_record
+      |> Official.changeset(official)
+      |> Repo.update!
+    end
 
     conn
     |> put_flash(:info, "Official was succesfully updated!")

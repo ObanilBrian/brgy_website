@@ -36,7 +36,7 @@
             </div>
             <div class="field">
               <label>Picture</label>
-              <%= file_input f, :picture, class: "form-control" %>
+              <%= file_input f, :picture, class: "form-control", accept: ".jpg, .jpeg, .png" %>
               <%= error_tag f, :picture %>
             </div>
             <button class="ui right floated green button">
