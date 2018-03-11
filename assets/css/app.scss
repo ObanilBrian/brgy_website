@@ -117,3 +117,8 @@ main {
 a {
   color: $primary_color;
 }
+
+.clickable_row:hover {
+  cursor: pointer;
+  background-color: #bcffbcde;
+}

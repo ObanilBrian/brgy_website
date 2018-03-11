@@ -274,3 +274,8 @@ if(news_state == true) {
     }
   });
 }
+
+$('.clickable_row').click(function(){
+  let link = $(this).attr("link")
+  window.location.replace(link)
+})

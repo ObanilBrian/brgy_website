@@ -25,8 +25,8 @@
           </thead>
           <tbody>
             <%= for n <- @news do %>
-              <tr>
-                <td><a href="/news/<%= n.id %>"><%= n.id %></a></td>
+              <tr class="clickable_row" link="/news/<%= n.id %>">
+                <td><%= n.id %></td>
                 <td><%= n.title %></td>
                 <td><%= n.author %></td>
               </tr>

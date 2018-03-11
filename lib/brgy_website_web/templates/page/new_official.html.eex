@@ -31,7 +31,7 @@
             </div>
             <div class="field">
               <label>Position</label>
-              <%= text_input f, :position, placeholder: "Enter position" %>
+              <%= select f, :position, ["Captain", "Counselor", "Secretary", "Treasurer"], prompt: "Enter position"%>
               <%= error_tag f, :position %>
             </div>
             <div class="field">

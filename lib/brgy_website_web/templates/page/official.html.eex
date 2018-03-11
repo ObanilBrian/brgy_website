@@ -25,8 +25,8 @@
           </thead>
           <tbody>
             <%= for o <- @official do %>
-              <tr>
-                <td><a href="/official/<%= o.id %>"><%= o.id %></a></td>
+              <tr class="clickable_row" link="/official/<%= o.id %>">
+                <td><%= o.id %></td>
                 <td><%= "#{o.first_name} #{o.middle_name} #{o.last_name}" %></td>
                 <td><%= o.position %></td>
               </tr>

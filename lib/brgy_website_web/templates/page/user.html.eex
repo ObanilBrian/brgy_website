@@ -25,8 +25,8 @@
           </thead>
           <tbody>
             <%= for u <- @user do %>
-              <tr>
-                <td><a href="/user/<%= u.id %>"><%= u.id %></a></td>
+              <tr class="clickable_row" link="/user/<%= u.id %>">
+                <td><%= u.id %></td>
                 <td><%= "#{u.first_name} #{u.middle_name} #{u.last_name}" %></td>
                 <td><%= u.username %></td>
               </tr>

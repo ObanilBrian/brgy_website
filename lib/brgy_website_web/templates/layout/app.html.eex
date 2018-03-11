@@ -28,6 +28,7 @@
               <a href="/about" id="nav_about">About</a>
               <a href="/report" id="nav_report">Report</a>
               <a href="/login" id="nav_admin">Admin</a>
+              
             </nav>
           </div>
         </div>
@@ -57,7 +58,7 @@ error = get_flash(@conn, :error)
 %>
 <%= if info do %>
   <script type="text/javascript">
-    alertify.set('notifier','position', 'top-right');
+    alertify.set('notifier','position', 'top-left');
     $(function() {
       alertify.success('<i class="close icon"></i><%= info %>')
     });
@@ -65,7 +66,7 @@ error = get_flash(@conn, :error)
 <% end %>
 <%= if error do %>
   <script type="text/javascript">
-    alertify.set('notifier','position', 'top-right');
+    alertify.set('notifier','position', 'top-left');
     $(function() {
       alertify.error('<i class="close icon"></i><%= error %>')
     });

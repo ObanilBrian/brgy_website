@@ -21,8 +21,8 @@
           </thead>
           <tbody>
             <%= for b <- @blotters do %>
-              <tr>
-                <td><a href="/blotter/<%= b.id %>"><%= b.id %></a></td>
+              <tr class="clickable_row" link="/blotter/<%= b.id %>">
+                <td><%= b.id %></td>
                 <td><%= "#{b.c_first_name} #{b.c_middle_name} #{b.c_last_name}" %></td>
                 <td><%= "#{b.r_first_name} #{b.r_middle_name} #{b.r_last_name}" %></td>
                 <td><%= b.case %></td>
